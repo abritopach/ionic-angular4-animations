@@ -7,5 +7,6 @@
 </ion-header>
 
 <ion-content padding [@colorChange]="currentColor">
-    <button ion-button (click)="changeColor()">Color Change</button>
+    <button ion-button (click)="changeColor()">Change background color</button>
+    <button ion-button (click)="changeSize()" [@sizeChange]='currentSize'>Change button size</button>
 </ion-content>

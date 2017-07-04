@@ -25,7 +25,18 @@ import { NavController } from 'ionic-angular';
       transition('* => white', animate('3000ms')),
       state('pink', style({ background: 'pink' })),
       transition('* => pink', animate('3000ms'))
-    ])
+    ]),
+      trigger('sizeChange', [
+          state('small', style({
+              transform: 'scale(1)',
+          })),
+          state('large', style({
+              transform: 'scale(1.2)',
+          })),
+          transition('small <=> large', animate('300ms ease-in', style({
+              transform: 'translateY(40px)'
+          }))),
+      ]),
   ],
 })
 export class HomePage {
@@ -34,11 +45,14 @@ export class HomePage {
     private currentColor: string;
     colorArr: string[] = ['red', 'green', 'blue', 'yellow', 'orange', 'aqua', 'pink', 'white'];
 
+    private currentSize: string = 'small';
+
     constructor(public navCtrl: NavController) {
 
     }
 
     changeColor() {
+
         this.colorCount++;
         if (this.colorCount < this.colorArr.length) {
             this.currentColor = this.colorArr[this.colorCount];
@@ -46,6 +60,10 @@ export class HomePage {
             this.colorCount = 0;
             this.currentColor = this.colorArr[0];
         }
+    }
+
+    changeSize() {
+        this.currentSize = (this.currentSize === 'small' ? 'large' : 'small');
     }
 
 }
