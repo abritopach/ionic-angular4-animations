@@ -1,12 +1,38 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Ionic Angular4 Animations
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding [@colorChange]="currentColor">
-    <button ion-button (click)="changeColor()">Change background color</button>
-    <button ion-button (click)="changeSize()" [@sizeChange]='currentSize'>Change button size</button>
+
+    <ion-list no-lines>
+        <ion-item-divider color="light">Animation Background Color</ion-item-divider>
+        <ion-item>
+            <button ion-button (click)="changeColor()">Test</button>
+        </ion-item>
+        <!--
+        <ion-item-divider color="light">Change Button Size</ion-item-divider>
+        <ion-item>
+            <button ion-button (click)="changeSize()" [@sizeChange]='currentSize'>Test</button>
+        </ion-item>
+        -->
+        <ion-item-divider color="light">Animation Resize Button</ion-item-divider>
+        <ion-item>
+            <button ion-button (click)="resizeButton()" [@resize]='resize'>Test</button>
+        </ion-item>
+        <ion-item-divider color="light">Animation Shake Mobile Icon</ion-item-divider>
+        <ion-item>
+            <button ion-button (click)="shakeIcon()">Test</button>
+            <img src="assets/img/mobile.png" [@shake]='shake'>
+        </ion-item>
+    </ion-list>
+
+    <!--
+    <ion-row>
+        <img src="assets/img/mobile.png" [@scale]='scale'>
+    </ion-row>
+    -->
 </ion-content>
