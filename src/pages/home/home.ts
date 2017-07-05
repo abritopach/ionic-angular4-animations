@@ -26,21 +26,6 @@ import { NavController } from 'ionic-angular';
       state('pink', style({ background: 'pink' })),
       transition('* => pink', animate('3000ms'))
     ]),
-      /*
-      trigger('sizeChange', [
-          state('small', style({
-              transform: 'scale(1)',
-          })),
-          state('large', style({
-              transform: 'scale(1.2)',
-          })),
-          transition('small <=> large', animate('300ms ease-in', keyframes([
-              style({opacity: 0, transform: 'translateY(-75%)', offset: 0}),
-              style({opacity: 1, transform: 'translateY(35px)',  offset: 0.5}),
-              style({opacity: 1, transform: 'translateY(0)',     offset: 1.0})
-          ]))),
-      ]),
-      */
       trigger('resize', [
           state('small', style({
               transform: 'scale(1)',
@@ -69,14 +54,19 @@ import { NavController } from 'ionic-angular';
               style({transform: 'translate3d(-1px, 0, 0)', offset: 0.9}),
           ])))
       ]),
-      /*
-      trigger('scale', [
-          transition('* <=> *', animate('1s ease-in-out', keyframes([
-              style({ transform: 'scale(0.5)' }),
-              style({ transform: 'scale(1)' })
+      trigger('flicker', [
+          state('start', style ({
+              //transform: 'scale(1)',
+          })),
+          state('end', style ({
+              //transform: 'scale(1.1)',
+          })),
+          transition('start <=> end', animate('2s ease-in', keyframes([
+              style({opacity: 1, offset: 0.1}),
+              style({opacity: 0, offset: 0.5}),
+              style({opacity: 1, offset: 1.0}),
           ])))
       ])
-      */
   ],
 })
 export class HomePage {
@@ -85,13 +75,11 @@ export class HomePage {
     private currentColor: string;
     colorArr: string[] = ['red', 'green', 'blue', 'yellow', 'orange', 'aqua', 'pink', 'white'];
 
-    //private currentSize: string = 'small';
+    private flicker: string = 'start';
 
     private shake: string = 'start';
 
     private resize: string = 'small';
-
-    //private scale: string = 'scale';
 
     constructor(public navCtrl: NavController) {
 
@@ -108,19 +96,16 @@ export class HomePage {
         }
     }
 
-    /*
-    changeSize() {
-        this.currentSize = (this.currentSize === 'small' ? 'large' : 'small');
-    }
-    */
-
     resizeButton() {
         this.resize = (this.resize === 'small' ? 'large' : 'small');
     }
 
     shakeIcon() {
-        console.log("shakeIcon");
         this.shake = (this.shake === 'start' ? 'end' : 'start');
+    }
+
+    flickerIcon() {
+        this.flicker = (this.flicker === 'start' ? 'end' : 'start');
     }
 
 }
