@@ -31,6 +31,22 @@
             <button ion-button (click)="flickerIcon()">Test</button>
             <ion-badge item-end><img src="assets/img/eye.png" [@flicker]='flicker'></ion-badge>
         </ion-item>
+        <ion-item-divider color="light">Animation Entering and leaving heroes</ion-item-divider>
+        <ion-item>
+            <button ion-button (click)="addHeroe()">Add heroe</button>
+            <button ion-button (click)="removeHeroe()">Remove heroe</button>
+            <ul>
+                <li *ngFor="let hero of heroes" [@flyInOut]="'in'">{{hero}}</li>
+            </ul>
+        </ion-item>
+        <ion-item-divider color="light">Animation Automatic property calculation</ion-item-divider>
+        <ion-item>
+            <button ion-button (click)="addHeroe1()">Add heroe</button>
+            <button ion-button (click)="removeHeroe1()">Remove heroe</button>
+            <ul>
+                <li *ngFor="let hero of heroes1" [@shrinkOut]="'in'"> {{hero}}</li>
+            </ul>
+        </ion-item>
     </ion-list>
 
 </ion-content>

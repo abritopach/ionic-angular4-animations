@@ -66,6 +66,23 @@ import { NavController } from 'ionic-angular';
               style({opacity: 0, offset: 0.5}),
               style({opacity: 1, offset: 1.0}),
           ])))
+      ]),
+      trigger('flyInOut', [
+          state('in', style({transform: 'translateX(0)'})),
+          transition('void => *', [
+              style({transform: 'translateX(-100%)'}),
+              animate(300)
+          ]),
+          transition('* => void', [
+              animate(300, style({transform: 'translateX(100%)'}))
+          ])
+      ]),
+      trigger('shrinkOut', [
+          state('in', style({height: '*'})),
+          transition('* => void', [
+              style({height: '*'}),
+              animate(250, style({height: 0}))
+          ])
       ])
   ],
 })
@@ -81,7 +98,27 @@ export class HomePage {
 
     private resize: string = 'small';
 
+    private heroes: any;
+    private heroes1: any;
+    private currentIndex: number = 0;
+
+    static ALL_HEROES = [
+    'Windstorm',
+    'RubberMan',
+    'Bombasto',
+    'Magneta',
+    'Dynama',
+    'Narco',
+    'Celeritas',
+    'Dr IQ',
+    'Magma',
+    'Tornado',
+    'Mr. Nice'
+    ];
+
     constructor(public navCtrl: NavController) {
+        this.heroes = [];
+        this.heroes1 = [];
 
     }
 
@@ -106,6 +143,34 @@ export class HomePage {
 
     flickerIcon() {
         this.flicker = (this.flicker === 'start' ? 'end' : 'start');
+    }
+
+    addHeroe() {
+        if (this.currentIndex <= HomePage.ALL_HEROES.length - 1) {
+            this.heroes.push(HomePage.ALL_HEROES[this.currentIndex]);
+            this.currentIndex += 1;
+        }
+        else this.currentIndex = 0;
+    }
+
+    removeHeroe() {
+        if (this.heroes.length > 0) {
+            this.heroes.splice(this.heroes.length - 1, 1);
+        }
+    }
+
+    addHeroe1() {
+        if (this.currentIndex <= HomePage.ALL_HEROES.length - 1) {
+            this.heroes1.push(HomePage.ALL_HEROES[this.currentIndex]);
+            this.currentIndex += 1;
+        }
+        else this.currentIndex = 0;
+    }
+
+    removeHeroe1() {
+        if (this.heroes1.length > 0) {
+            this.heroes1.splice(this.heroes1.length - 1, 1);
+        }
     }
 
 }
