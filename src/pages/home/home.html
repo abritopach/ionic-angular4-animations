@@ -11,21 +11,25 @@
     <ion-list no-lines>
         <ion-item-divider color="light">Animation Background Color</ion-item-divider>
         <ion-item>
-            <button ion-button (click)="changeColor()">Test</button>
+            <ion-row>
+                <button ion-button (click)="changeColor()">Test</button>
+            </ion-row>
         </ion-item>
         <ion-item-divider color="light">Animation Resize Button</ion-item-divider>
         <ion-item>
-            <button ion-button (click)="resizeButton()" [@resize]='resize'>Test</button>
+            <ion-row>
+                <button ion-button (click)="resizeButton()" [@resize]='resize'>Test</button>
+            </ion-row>
         </ion-item>
         <ion-item-divider color="light">Animation Shake Mobile Icon</ion-item-divider>
         <ion-item>
             <button ion-button (click)="shakeIcon()">Test</button>
-            <img src="assets/img/mobile.png" [@shake]='shake'>
+            <ion-badge item-end><img src="assets/img/mobile.png" [@shake]='shake'></ion-badge>
         </ion-item>
         <ion-item-divider color="light">Animation Flicker Icon</ion-item-divider>
         <ion-item>
             <button ion-button (click)="flickerIcon()">Test</button>
-            <img src="assets/img/eye.png" [@flicker]='flicker'>
+            <ion-badge item-end><img src="assets/img/eye.png" [@flicker]='flicker'></ion-badge>
         </ion-item>
     </ion-list>
 
